@@ -1,0 +1,22 @@
+<%- include ('partials/header.ejs') %>
+<body>
+    <%- include ('partials/navBar.ejs') %>
+    <div class="container">
+        <div class="card" id="formulario-pergunta">
+            <div class="card-header">
+                <h3>Realizar pergunta</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/saveask">
+                    <label>Assunto : </label>
+                    <input type="text" placeholder="Titulo" class="form-control" name="titulo">
+                    <br><label>Descrição : </label>
+                    <textarea placeholder="Escreva sua pergunta aqui!" class="form-control" name="descricao"></textarea>
+                    <br>
+                    <button class="btn btn-primary"> Enviar </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include ('partials/footer.ejs') %>
