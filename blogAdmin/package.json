@@ -4,7 +4,7 @@
   "description": "Projeto Blog com painel administrativo",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon",
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "slugify": "^1.4.6"
   }
 }
