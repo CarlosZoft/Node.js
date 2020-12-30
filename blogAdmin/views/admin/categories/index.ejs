@@ -23,9 +23,16 @@
                     <th><%=categories.title%></th>
                     <th><%=categories.slug%></th>
                     <th>
-                        <button class="btn btn-primary">Editar</button>
+                        <form method="POST" action="/admin/categories/edit" style="display:inline;">
+                            <input type="hidden" name="id" value="<%= categories.id %>">
+                            <button class="btn btn-warning">Editar</button>
+                        </form>
                         &nbsp;
-                        <button class="btn btn-primary">Remover</button>
+                        <form method="POST" action="/admin/categories/delete" style="display:inline;" onsubmit="confirmarAcao(event , this)">
+                            <input type="hidden" name="id" value="<%= categories.id %>">
+                            <button class="btn btn-danger">Remover</button>
+                        </form>
+                        
                     </th>
                 </tr>
 
@@ -35,3 +42,10 @@
     </div>
 </body>
 <%- include('../../partials/footer.ejs') %>
+<script>
+    function confirmarAcao(event, form){
+        event.preventDefault();
+        const decision = confirm("Deseja deletar esta categoria?");
+        if (decision) form.submit()
+    }
+</script>
