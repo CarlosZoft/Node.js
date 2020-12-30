@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
-
+const categoriesController = require('./categories/categoriesController');
+const articlesController = require('./articles/articlesController')
 //view engine 
 app.set('view engine', 'ejs');
 
@@ -20,7 +21,11 @@ connection
     .then(()=> console.log('conexão sucedida com o banco de dados'))
     .catch(err => console.log(err))
 
-// Main 
+// categories
+app.use("/", categoriesController)
+// articles
+app.use("/", articlesController)
+
 app.get("/", (req,res)=>{
     res.render("index");
 })
