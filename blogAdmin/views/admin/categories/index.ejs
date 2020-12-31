@@ -23,10 +23,8 @@
                     <th><%=categories.title%></th>
                     <th><%=categories.slug%></th>
                     <th>
-                        <form method="POST" action="/admin/categories/edit" style="display:inline;">
-                            <input type="hidden" name="id" value="<%= categories.id %>">
-                            <button class="btn btn-warning">Editar</button>
-                        </form>
+                 
+                            <a href="/admin/categories/edit/<%= categories.id %>" class="btn btn-warning">Editar</a>
                         &nbsp;
                         <form method="POST" action="/admin/categories/delete" style="display:inline;" onsubmit="confirmarAcao(event , this)">
                             <input type="hidden" name="id" value="<%= categories.id %>">
