@@ -24,9 +24,9 @@
                     <th><%=categories.slug%></th>
                     <th>
                  
-                            <a href="/admin/categories/edit/<%= categories.id %>" class="btn btn-warning">Editar</a>
+                            <a href="/categories/edit/<%= categories.id %>" class="btn btn-warning">Editar</a>
                         &nbsp;
-                        <form method="POST" action="/admin/categories/delete" style="display:inline;" onsubmit="confirmarAcao(event , this)">
+                        <form method="POST" action="/categories/delete" style="display:inline;" onsubmit="confirmarAcao(event , this)">
                             <input type="hidden" name="id" value="<%= categories.id %>">
                             <button class="btn btn-danger">Remover</button>
                         </form>
