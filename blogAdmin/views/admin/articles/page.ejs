@@ -1,0 +1,31 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+    <%- include('../../partials/navBarHome.ejs') %>
+    <div class="container">
+
+        <hr>
+        <% result.articles.rows.forEach(article => { %>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <%= article.title %>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= article.slug %>"><button class="btn btn-info">Ver mais</button></a>
+                </div>
+            </div>
+        <% }) %>
+        <div class="row">
+            <% if(result.page - 1 >= 1) {%>
+                <a style="float:right" href="/articles/page/<%= result.page - 1 %>"><<< Prev</a>
+            <% } %>
+            <div class="col col-12">
+                <% if(result.next) {%>
+                    <a style="float:right" href="/articles/page/<%= result.page + 1 %>">Next >>></a>
+                <% } %>
+            </div>
+            <br>
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>

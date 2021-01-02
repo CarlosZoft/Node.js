@@ -5,9 +5,11 @@ const connection = require('./database/database');
 
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
+const userscontroller = require('./Admin/UserController')
 
 const Article = require("./articles/Article");
 const Category = require('./categories/Category');
+
 
 //view engine 
 app.set('view engine', 'ejs');
@@ -30,12 +32,15 @@ connection
 app.use("/", categoriesController)
 // articles
 app.use("/", articlesController)
+// users 
+app.use("/", userscontroller)
 
 app.get("/", (req,res)=>{
     Article.findAll({
         order:[
             ['id', 'DESC']
-        ]
+        ],
+        limit : 4
     }).then(articles =>{
         Category.findAll().then(categories =>{
             res.render("index", {articles : articles, categories: categories});
