@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
+const session = require('express-session');
 
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
@@ -10,6 +11,12 @@ const userscontroller = require('./Admin/UserController')
 const Article = require("./articles/Article");
 const Category = require('./categories/Category');
 
+//sessions 
+
+app.use(session({
+    secret: "29zum9298j",
+    cookie: {MaxAge: 30000000}
+}))
 
 //view engine 
 app.set('view engine', 'ejs');
@@ -55,7 +62,7 @@ app.get("/:slug", (req,res)=>{
     .then(article =>{
         if(article != undefined){
             Category.findAll().then(categories =>{
-                res.render("read", {articles : articles, categories: categories});
+                res.render("read", {article : article, categories: categories});
             })
         }
         else {
