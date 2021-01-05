@@ -95,7 +95,7 @@ app.get("/category/:slug", (req,res)=>{
 
 })
 
-app.listen(3333, ()=>{
+app.listen(3000, ()=>{
     console.log('Rodou!!');
 })
 
