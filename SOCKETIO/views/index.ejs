@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" id="palavras">
+   <button type="submit" onClick="enviar()">Enviar</button>
+   <hr>
+   <p id="resultado"></p>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
+<script>
+    var socket = io("http://localhost:3678");
+    socket.on("disconnect", () => {
+        console.log("desconectado!");
+    })
+
+    socket.on("resultado", (data) =>{
+ 
+        var p = document.getElementById("resultado");
+        p.innerText = data;
+    });
+
+    function enviar(){
+       var input = document.getElementById("palavras");
+       console.log(input.value);
+       socket.emit("palavras", input.value)
+    }
+</script>
+</html>
