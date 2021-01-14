@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<style>
+    #chat{
+        max-height:500px;
+        min-height:500px;
+        background-color: #ccc;
+        overflow-y:scroll;
+    }
+</style>
+<body>
+    <h1 class="title">Simple Chat</h1>
+    <div id="chat">
+
+    </div><br>
+    <input type="text" name="" id="msg" class="form-control" placeholder="message">
+    <input type="text" name="" id="username" placeholder="Nome de usuário" class="form-control"><br>
+    <button onclick="enviar()" class="btn btn-primary">Enviar</button>
+   
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
+<script>
+    var socket = io("http://localhost:3678");
+    socket.on("disconnect", () => {
+        console.log("desconectado!");
+    })
+
+    socket.on("showmsg", (data)=>{
+        console.log(data);
+        var chat = document.getElementById("chat");
+        var p = document.createElement("p");
+        p.innerHTML = data.username + ": " + data.msg;
+        p.className = "fs-1"
+        p.style.color="black"
+        chat.appendChild(p);
+    })
+
+    function enviar () {
+        var msgField = document.getElementById("msg");
+        var nameField = document.getElementById("username");
+        var msg = msgField.value;
+        var name = nameField.value;
+
+        socket.emit("msg", {msg:msg,username:name});
+
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</html>
