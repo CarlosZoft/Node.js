@@ -4,7 +4,7 @@ const Category = require('./Category');
 const slugify = require('slugify')
 const adminAuth = require('../middlewares/adminAuth')
 
-router.get("/admin/categories",adminAuth , (req, res)=>{
+router.get("/admin/categories",adminAuth , (req, res) => {
     Category.findAll().then(categories =>{
         res.render("../views/admin/categories/index", {categories : categories});
     })
@@ -26,7 +26,7 @@ router.post("/categories/save", adminAuth ,(req, res)=>{
         res.redirect("/admin/categories/new")
     }
 });
-router.post("/categories/delete",adminAuth  ,(req,res)=>{
+router.post("/categories/delete", adminAuth  ,(req,res)=>{
     const id = req.body.id;
     if(id!=undefined){
         if(!isNaN(id)){
