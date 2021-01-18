@@ -8,8 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start" : "npx http-server --cors public",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx http-server --cors public"
   },
   "keywords": [],
   "author": "",
